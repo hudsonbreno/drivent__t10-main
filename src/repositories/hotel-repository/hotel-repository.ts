@@ -15,7 +15,9 @@ async function findHotelById(id: number) {
   });
 }
 
-export default {
+const HotelsRepository = {
   findHotelMany,
   findHotelById,
 };
+
+export default HotelsRepository;
