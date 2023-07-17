@@ -95,11 +95,11 @@ describe("GET /hotels/:id", ()=>{
         expect(retorno.status).toBe(401)
     })
     
-    // it("Retorna status 404 se inscrição não existir?", async ()=>{
-    //     const user = await createUser();
-    //     const token = await generateValidToken(user)
-    //     expect().toBe(404)
-    // })
+    it("Retorna status 404 se inscrição não existir?", async ()=>{
+        const user = await createUser();
+        const token = await generateValidToken(user)
+        expect().toBe(404)
+    })
 
     // it("Retorna status 404 se ticket não existir?", async ()=>{
 

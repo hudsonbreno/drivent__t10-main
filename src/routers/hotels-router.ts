@@ -7,7 +7,8 @@ import { authenticateToken } from "@/middlewares";
 const hotelsRouter = Router();
 
 hotelsRouter
-    .get('/',authenticateToken, getHotels)
-    .get('/:hotelId',authenticateToken, getHotelId);
+    .all("/*", authenticateToken)
+    .get('/', getHotels)
+    .get('/:hotelId', getHotelId);
 
 export default hotelsRouter;

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>7/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>7/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -89,31 +89,31 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">8x</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">27x</span>
-<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as jwt from 'jsonwebtoken';
 import { User } from '@prisma/client';
@@ -123,23 +123,23 @@ import { createSession } from './factories/sessions-factory';
 import { prisma } from '@/config';
 &nbsp;
 export async function cleanDb() {
-  await prisma.address.deleteMany({});
-  await prisma.payment.deleteMany({});
-  await prisma.ticket.deleteMany({});
-  await prisma.enrollment.deleteMany({});
-  await prisma.event.deleteMany({});
-  await prisma.session.deleteMany({});
-  await prisma.user.deleteMany({});
-  await prisma.ticketType.deleteMany({});
+  await prisma.address.deleteMany();
+<span class="cstat-no" title="statement not covered" >  await prisma.payment.deleteMany();</span>
+<span class="cstat-no" title="statement not covered" >  await prisma.ticket.deleteMany();</span>
+<span class="cstat-no" title="statement not covered" >  await prisma.enrollment.deleteMany();</span>
+<span class="cstat-no" title="statement not covered" >  await prisma.event.deleteMany();</span>
+<span class="cstat-no" title="statement not covered" >  await prisma.session.deleteMany();</span>
+<span class="cstat-no" title="statement not covered" >  await prisma.user.deleteMany();</span>
+<span class="cstat-no" title="statement not covered" >  await prisma.ticketType.deleteMany();</span>
 }
 &nbsp;
-export async function generateValidToken(user?: User) {
-  const incomingUser = user || (await createUser());
-  const token = jwt.sign({ userId: incomingUser.id }, process.env.JWT_SECRET);
+export async function <span class="fstat-no" title="function not covered" >generateValidToken(</span>user?: User) {
+  const incomingUser = <span class="cstat-no" title="statement not covered" >user || (await createUser());</span>
+  const token = <span class="cstat-no" title="statement not covered" >jwt.sign({ userId: incomingUser.id }, process.env.JWT_SECRET);</span>
 &nbsp;
-  await createSession(token);
+<span class="cstat-no" title="statement not covered" >  await createSession(token);</span>
 &nbsp;
-  return token;
+<span class="cstat-no" title="statement not covered" >  return token;</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -148,7 +148,7 @@ export async function generateValidToken(user?: User) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Jul 16 2023 17:52:53 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Jul 17 2023 17:11:29 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../prettify.js"></script>
         <script>

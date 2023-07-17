@@ -1,20 +1,49 @@
-import { Hotel } from '@prisma/client';
-import { notFoundError } from '@/errors';
-import enrollmentRepository from '@/repositories/enrollment-repository';
 import HotelsRepository from '@/repositories/hotel-repository/hotel-repository';
+import enrollmentsService from '../enrollments-service';
+import ticketService from '../tickets-service';
+import ticketsRepository from '@/repositories/tickets-repository';
 
-async function getHotels(){
+async function getHotels(user:number){
+
+  const inscricao = await enrollmentsService.getOneWithAddressByUserId(user)
+  if(!inscricao) throw Error("NotFound")
+
+  const ticket = await ticketService.getTicketByUserId(user)
+  if(!ticket) throw Error ("NotFound")
+
+  if(ticket.status !== 'PAID') throw Error ('PaymentRequired');
+
+  const ticketsTypes = await ticketsRepository.findTicketByEnrollmentId(inscricao.id)
+  if (ticketsTypes.TicketType.isRemote === true || ticketsTypes.TicketType.includesHotel === false) {
+    throw Error('PaymentRequired');
+  }
+
   const hotels = await HotelsRepository.findHotelMany();
-  if (!hotels) throw notFoundError();
 
-  return hotels;
+  if (!hotels) throw Error ('NotFound')
+  return hotels
+
 }
 
-async function getHotelById(hotelId: number){
-  const hotel = await HotelsRepository.findHotelById(hotelId);
-  if (!hotel) throw notFoundError();
-  
-  return hotel
+async function getHotelById(user: number, hotelId: number){
+
+  const inscricao = await enrollmentsService.getOneWithAddressByUserId(user)
+  if(!inscricao) throw Error("NotFound")
+
+  const ticket = await ticketService.getTicketByUserId(user)
+  if(!ticket) throw Error ("NotFound")
+
+  if(ticket.status !== 'PAID') throw Error ('PaymentRequired');
+
+  const ticketsTypes = await ticketsRepository.findTicketByEnrollmentId(inscricao.id)
+  if (ticketsTypes.TicketType.isRemote === true || ticketsTypes.TicketType.includesHotel === false) {
+    throw Error('PaymentRequired');
+}
+
+  const hotels = await HotelsRepository.findHotelMany();
+
+  if (!hotels) throw Error ('NotFound')
+  return hotels
 } 
 
 const hotelService = { getHotels, getHotelById };
