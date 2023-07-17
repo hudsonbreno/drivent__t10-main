@@ -4,14 +4,17 @@ import enrollmentRepository from '@/repositories/enrollment-repository';
 import HotelsRepository from '@/repositories/hotel-repository/hotel-repository';
 
 async function getHotels(){
-  const hotel = await HotelsRepository.findHotelMany();
-  if (!hotel) throw notFoundError();
+  const hotels = await HotelsRepository.findHotelMany();
+  if (!hotels) throw notFoundError();
 
-  return hotel;
+  return hotels;
 }
 
 async function getHotelById(hotelId: number){
-  return hotelId;
+  const hotel = await HotelsRepository.findHotelById(hotelId);
+  if (!hotel) throw notFoundError();
+  
+  return hotel
 } 
 
 const hotelService = { getHotels, getHotelById };
